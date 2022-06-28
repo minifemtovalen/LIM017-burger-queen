@@ -1,0 +1,27 @@
+* {
+  background-color: #FFFAF0;
+}
+
+.logo {
+  position: absolute;
+  top: 120px;
+  z-index: 7;
+  height: 397px;
+  left: calc(50% - 230px);
+  background: transparent;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f6ccd7;
+}
+
+.bg {
+  height: 100vh;
+  width: auto;
+  margin: auto;
+}
