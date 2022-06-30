@@ -32,9 +32,6 @@
 /* medida para desktop */
 
 @media screen and (min-width:840px) {
-  /* * {
-    background-color: #FFFAF0;
-  } */
 
   .wrapper {
     width: 50%;
