@@ -5,7 +5,6 @@ import './Login.css';
 import {
   Box,
   Stack,
-  Container,
   SimpleGrid,
   Heading,
   Input,
@@ -18,30 +17,32 @@ import {
   LockIcon,
 } from '@chakra-ui/icons';
 import logo from '../assets/maki-me-happy.svg';
-import background from '../assets/login-bg.jpg';
-
+import background from '../assets/login-bg.png';
+import desktop from '../assets/Diseño-2.png';
 
 export const Login = () => {
   return (
     <Box position={'relative'}>
-      <Container
-        as={SimpleGrid}
+      <SimpleGrid
         maxW="100vw"
         h="100vh"
         columns={{lg: 2, base: 2, sm: 1}}
         p={0}
       >
         <Box className="wrapper">
-          <img className="bg" src={background} alt="background"/>
+          <img className="bg" src={background} alt="background" />
           <img className="logo" src={logo} alt="Logo" />
         </Box>
-        <Stack
+        <Box
           pt="8em"
           placeSelf="center"
           spacing={{base: 10, md: 20}}>
           <Heading>
           </Heading>
           <Box as={'form'} mt={10} className="input-wrapper">
+            <Box>
+              <img className="desktop" src={desktop} alt="desktop" />
+            </Box>
             <Stack spacing={4}>
               <InputGroup borderRadius="16px">
                 <InputLeftElement
@@ -105,8 +106,8 @@ export const Login = () => {
             </Button>
           </Box>
           form
-        </Stack>
-      </Container>
+        </Box>
+      </SimpleGrid>
     </Box>
   );
 };

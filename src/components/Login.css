@@ -1,6 +1,6 @@
-* {
+/* * {
   background-color: #FFFAF0;
-}
+} */
 
 .logo {
   position: absolute;
@@ -22,6 +22,54 @@
 
 .bg {
   height: 100vh;
-  width: auto;
-  margin: auto;
+  width: 100%;
+}
+
+.desktop {
+  display: none;
+}
+
+/* medida para desktop */
+
+@media screen and (min-width:840px) {
+  /* * {
+    background-color: #FFFAF0;
+  } */
+
+  .wrapper {
+    width: 50%;
+  }
+  .logo {
+    position: absolute;
+    top: 28px;
+    z-index: 7;
+    height: 325px;
+    /*left: calc(50% - 230px);*/
+    background: transparent;
+    right: 738px;
+    left: 7% !important;
+    position: absolute;
+  }
+
+  .bg {
+    height: 140vh;
+    width: auto;
+    margin: auto;
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+  }
+
+  .desktop {
+    display: block;
+    height: 40vh;
+    width: auto;
+    margin-bottom: 30px;
+  }
+
+  .input-wrapper {
+    position: absolute;
+    right: 15%;
+    top: -2%;
+  }
 }
