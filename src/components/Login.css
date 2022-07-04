@@ -1,53 +1,4 @@
-@media screen and (min-width:481px){
-
-/* * {
-  background-color: #FFFAF0;
-} */
-
-.logo {
-  position: absolute;
-  top: 120px;
-  z-index: 7;
-  height: 397px;
-  left: calc(50% - 230px);
-  background: transparent;
-}
-
-.wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #f6ccd7;
-}
-
-.bg {
-  height: 100vh;
-  width: 100%;
-}
-
-.desktop {
-  display: none;
-}
-
-}
-
-@media screen and (min-width:641px){
-
-  /* * {
-    background-color: #FFFAF0;
-  } */
-  
-  .logo {
-    position: absolute;
-    top: 120px;
-    z-index: 7;
-    height: 397px;
-    left: calc(50% - 230px);
-    background: transparent;
-  }
-  
+@media screen and (min-width:481px) {
   .wrapper {
     position: absolute;
     top: 0;
@@ -56,35 +7,62 @@
     right: 0;
     background: #f6ccd7;
   }
-  
+
   .bg {
     height: 100vh;
     width: 100%;
   }
-  
-  .desktop {
+
+  .logo {
+    position: absolute;
+    top: 120px;
+    z-index: 7;
+    height: 397px;
+    left: calc(50% - 230px);
+  }
+
+  .desktop-img {
     display: none;
   }
-  
+}
+
+@media screen and (min-width:641px) {
+  .wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f6ccd7;
   }
+
+  .bg {
+    height: 100vh;
+    width: 100%;
+  }
+
+  .logo {
+    position: absolute;
+    top: 120px;
+    z-index: 7;
+    height: 397px;
+    left: calc(50% - 230px);
+  }
+
+  .desktop-img {
+    display: none;
+  }
+}
 
 /* medida para desktop */
 
 @media screen and (min-width:961px) {
+  .simple-grid {
+    background-color: #FBF2E1;
+  }
 
   .wrapper {
     width: 50%;
-  }
-  .logo {
-    position: absolute;
-    top: 28px;
-    z-index: 7;
-    height: 325px;
-    /*left: calc(50% - 230px);*/
-    background: transparent;
-    right: 738px;
-    left: 7% !important;
-    position: absolute;
   }
 
   .bg {
@@ -96,7 +74,18 @@
     bottom: 0%;
   }
 
-  .desktop {
+  .logo {
+    position: absolute;
+    top: 28px;
+    z-index: 7;
+    height: 325px;
+    /*left: calc(50% - 230px);*/
+    right: 738px;
+    left: 7% !important;
+    position: absolute;
+  }
+
+  .desktop-img {
     display: block;
     height: 40vh;
     width: auto;
@@ -111,20 +100,12 @@
 }
 
 @media screen and (min-width:1025px) {
+  .simple-grid {
+    background-color: #FBF2E1;
+  }
 
   .wrapper {
     width: 50%;
-  }
-  .logo {
-    position: absolute;
-    top: 28px;
-    z-index: 7;
-    height: 325px;
-    /*left: calc(50% - 230px);*/
-    background: transparent;
-    right: 738px;
-    left: 7% !important;
-    position: absolute;
   }
 
   .bg {
@@ -136,7 +117,18 @@
     bottom: 0%;
   }
 
-  .desktop {
+  .logo {
+    position: absolute;
+    top: 28px;
+    z-index: 7;
+    height: 325px;
+    /*left: calc(50% - 230px);*/
+    right: 738px;
+    left: 7% !important;
+    position: absolute;
+  }
+
+  .desktop-img {
     display: block;
     height: 40vh;
     width: auto;

@@ -18,12 +18,15 @@ import {
 } from '@chakra-ui/icons';
 import logo from '../assets/maki-me-happy.svg';
 import background from '../assets/login-bg.png';
-import desktop from '../assets/Diseño-2.png';
+import sushiGirl from '../assets/sushi-girl.png';
+// import {auth} from '../firebase/config.js';
+// import {LoginByEmailPassword} from 'firebase/auth';
+// import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
   return (
     <Box position={'relative'}>
-      <SimpleGrid
+      <SimpleGrid className="simple-grid"
         maxW="100vw"
         h="100vh"
         columns={{lg: 2, base: 2, sm: 1}}
@@ -41,7 +44,9 @@ export const Login = () => {
           </Heading>
           <Box as={'form'} mt={10} className="input-wrapper">
             <Box>
-              <img className="desktop" src={desktop} alt="desktop" />
+              <img className="desktop-img"
+                src={sushiGirl}
+                alt="girl eating sushi" />
             </Box>
             <Stack spacing={4}>
               <InputGroup borderRadius="16px">
