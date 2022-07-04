@@ -19,6 +19,9 @@ import {
 import logo from '../assets/maki-me-happy.svg';
 import background from '../assets/login-bg.png';
 import sushiGirl from '../assets/sushi-girl.png';
+// import {auth} from '../firebase/config.js';
+// import {LoginByEmailPassword} from 'firebase/auth';
+// import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
   return (
