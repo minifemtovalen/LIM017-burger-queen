@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable require-jsdoc */
-import React, { useRef, useContext } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import React, {useRef, useContext} from 'react';
+import {useNavigate, useLocation} from 'react-router-dom';
 import './Login.css';
 import {
   Box,
@@ -21,22 +21,19 @@ import {
 import logo from '../assets/maki-me-happy.svg';
 import background from '../assets/login-bg.png';
 import sushiGirl from '../assets/sushi-girl.png';
-import { AuthContext } from '../firebase/AuthContext';
+import {AuthContext} from '../firebase/AuthContext';
 
 // Vista LogIn para iniciar sesion
 export default function LogIn() {
-
   // Declaracion de variables
   const userInputRef = useRef();
   const passwordInputRef = useRef();
   const workerSelectRef = useRef();
-  let navigate = useNavigate();
-  let location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const contextValue = useContext(AuthContext);
 
-  // Funcion que permite acceder a informacion ingresada en inputs que contienen datos del usuario
   const getInputValue = () => {
-
     // Declaracion de variables locales
     const inputUserValue = userInputRef.current.value;
     const inputPasswordValue = passwordInputRef.current.value;
@@ -47,7 +44,7 @@ export default function LogIn() {
       if (typeof user === 'string') {
         let message = '';
 
-        //Manejamos errores de inicio de sesion
+        // Manejamos errores de inicio de sesion
         switch (user) {
           case 'Firebase: Error (auth/internal-error).':
             message = 'Ingresar contraseña';
@@ -69,20 +66,20 @@ export default function LogIn() {
         }
       } else {
         // Accedemos a la vista correspondiente segun el usuario
-        if (workerSelectRefValue === "Mesas") {
-          navigate("/staff" + location.search);
+        if (workerSelectRefValue === 'Mesas') {
+          navigate('/staff' + location.search);
         } else {
-          navigate("/cooking" + location.search);
+          navigate('/cooking' + location.search);
         }
       }
-    })
-  }
+    });
+  };
   return (
     <Box position={'relative'}>
       <SimpleGrid className="simple-grid"
         maxW="100vw"
         h="100vh"
-        columns={{ lg: 2, base: 2, sm: 1 }}
+        columns={{lg: 2, base: 2, sm: 1}}
         p={0}
       >
         <Box className="wrapper">
@@ -92,7 +89,7 @@ export default function LogIn() {
         <Box
           pt="8em"
           placeSelf="center"
-          spacing={{ base: 10, md: 20 }}>
+          spacing={{base: 10, md: 20}}>
           <Heading>
           </Heading>
           <Box as={'form'} mt={10} className="input-wrapper">
@@ -149,7 +146,8 @@ export default function LogIn() {
                 />
               </InputGroup>
               <InputGroup borderRadius="16px">
-                <Select ref={workerSelectRef} placeholder='Selecciona una opción'>
+                <Select ref={workerSelectRef}
+                  placeholder='Selecciona una opción'>
                   <option value="Mesas">Mesas</option>
                   <option value="Cocinas">Cocina</option>
                 </Select>
