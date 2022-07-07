@@ -1,9 +1,11 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable require-jsdoc */
-import React from 'react';
+import React, { useRef, useContext } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 import './Login.css';
 import {
   Box,
+  Select,
   Stack,
   SimpleGrid,
   Heading,
@@ -19,17 +21,68 @@ import {
 import logo from '../assets/maki-me-happy.svg';
 import background from '../assets/login-bg.png';
 import sushiGirl from '../assets/sushi-girl.png';
-// import {auth} from '../firebase/config.js';
-// import {LoginByEmailPassword} from 'firebase/auth';
-// import {useNavigate} from 'react-router-dom';
+import { AuthContext } from '../firebase/AuthContext';
 
-export const Login = () => {
+// Vista LogIn para iniciar sesion
+export default function LogIn() {
+
+  // Declaracion de variables
+  const userInputRef = useRef();
+  const passwordInputRef = useRef();
+  const workerSelectRef = useRef();
+  let navigate = useNavigate();
+  let location = useLocation();
+  const contextValue = useContext(AuthContext);
+
+  // Funcion que permite acceder a informacion ingresada en inputs que contienen datos del usuario
+  const getInputValue = () => {
+
+    // Declaracion de variables locales
+    const inputUserValue = userInputRef.current.value;
+    const inputPasswordValue = passwordInputRef.current.value;
+    const workerSelectRefValue = workerSelectRef.current.value;
+
+    // Accedemos a funcion LogIn del componente context
+    contextValue.logIn(inputUserValue, inputPasswordValue).then((user) => {
+      if (typeof user === 'string') {
+        let message = '';
+
+        //Manejamos errores de inicio de sesion
+        switch (user) {
+          case 'Firebase: Error (auth/internal-error).':
+            message = 'Ingresar contraseña';
+            break;
+          case 'Firebase: Error (auth/invalid-email).':
+            message = 'Email invalido';
+            break;
+          case 'Firebase: Error (auth/user-not-found).':
+            message = 'Usuario no encontrado';
+            break;
+          case 'Firebase: Error (auth/wrong-password).':
+            message = 'Contraseña incorrecta';
+            break;
+          case 'Firebase: Error (auth/missing-email).':
+            message = 'Ingresar email';
+            break;
+          default:
+            break;
+        }
+      } else {
+        // Accedemos a la vista correspondiente segun el usuario
+        if (workerSelectRefValue === "Mesas") {
+          navigate("/staff" + location.search);
+        } else {
+          navigate("/cooking" + location.search);
+        }
+      }
+    })
+  }
   return (
     <Box position={'relative'}>
       <SimpleGrid className="simple-grid"
         maxW="100vw"
         h="100vh"
-        columns={{lg: 2, base: 2, sm: 1}}
+        columns={{ lg: 2, base: 2, sm: 1 }}
         p={0}
       >
         <Box className="wrapper">
@@ -39,7 +92,7 @@ export const Login = () => {
         <Box
           pt="8em"
           placeSelf="center"
-          spacing={{base: 10, md: 20}}>
+          spacing={{ base: 10, md: 20 }}>
           <Heading>
           </Heading>
           <Box as={'form'} mt={10} className="input-wrapper">
@@ -58,6 +111,7 @@ export const Login = () => {
                   fontSize="21px"
                 />
                 <Input
+                  ref={userInputRef}
                   borderRadius="16px"
                   variant='filled'
                   fontFamily={'Lato'}
@@ -80,8 +134,8 @@ export const Login = () => {
                   fontSize="21px"
                 />
                 <Input
+                  ref={passwordInputRef}
                   borderRadius="16px"
-                  font-size="20px"
                   variant='filled'
                   placeholder="Contraseña"
                   fontFamily={'Lato'}
@@ -94,8 +148,15 @@ export const Login = () => {
                   fontSize="21px"
                 />
               </InputGroup>
+              <InputGroup borderRadius="16px">
+                <Select ref={workerSelectRef} placeholder='Selecciona una opción'>
+                  <option value="Mesas">Mesas</option>
+                  <option value="Cocinas">Cocina</option>
+                </Select>
+              </InputGroup>
             </Stack>
             <Button
+              onClick={getInputValue}
               fontFamily={'Lato'}
               mt={8}
               w={'full'}
@@ -106,13 +167,13 @@ export const Login = () => {
               _hover={{
                 bgGradient: 'linear(to-r, red.600,orange.400)',
                 boxShadow: 'xl',
-              }}>
+              }}
+            >
               Iniciar sesión
             </Button>
           </Box>
-          form
         </Box>
       </SimpleGrid>
     </Box>
   );
-};
+}
