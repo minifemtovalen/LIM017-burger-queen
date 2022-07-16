@@ -1,82 +1,59 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable require-jsdoc */
 import React, {useRef, useContext} from 'react';
+import {AuthContext} from '../context/AuthContext';
+import {loginErrors} from '../utils/loginFunctions';
 import {useNavigate, useLocation} from 'react-router-dom';
-import './Login.css';
 import {
   Box,
   Select,
   Stack,
   SimpleGrid,
-  Heading,
   Input,
   InputGroup,
   InputLeftElement,
   Button,
 } from '@chakra-ui/react';
-import {
-  EmailIcon,
-  LockIcon,
-} from '@chakra-ui/icons';
+import {EmailIcon, LockIcon} from '@chakra-ui/icons';
 import logo from '../assets/maki-me-happy.svg';
 import background from '../assets/login-bg.png';
 import sushiGirl from '../assets/sushi-girl.png';
-import {AuthContext} from '../firebase/AuthContext';
+import './Login.css';
 
-// Vista LogIn para iniciar sesion
-export default function LogIn() {
-  // Declaracion de variables
-  const userInputRef = useRef();
+export default function Login() {
+  // variable declarations
+  const mailInputRef = useRef();
   const passwordInputRef = useRef();
-  const workerSelectRef = useRef();
+  const workAreaRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
   const contextValue = useContext(AuthContext);
 
   const getInputValue = () => {
-    // Declaracion de variables locales
-    const inputUserValue = userInputRef.current.value;
-    const inputPasswordValue = passwordInputRef.current.value;
-    const workerSelectRefValue = workerSelectRef.current.value;
+    // local variables
+    const mailValue = mailInputRef.current.value;
+    const passwordValue = passwordInputRef.current.value;
+    const selectValue = workAreaRef.current.value;
 
     // Accedemos a funcion LogIn del componente context
-    contextValue.logIn(inputUserValue, inputPasswordValue).then((user) => {
+    contextValue.logIn(mailValue, passwordValue).then((user) => {
       if (typeof user === 'string') {
-        let message = '';
-
-        // Manejamos errores de inicio de sesion
-        switch (user) {
-          case 'Firebase: Error (auth/internal-error).':
-            message = 'Ingresar contraseña';
-            break;
-          case 'Firebase: Error (auth/invalid-email).':
-            message = 'Email invalido';
-            break;
-          case 'Firebase: Error (auth/user-not-found).':
-            message = 'Usuario no encontrado';
-            break;
-          case 'Firebase: Error (auth/wrong-password).':
-            message = 'Contraseña incorrecta';
-            break;
-          case 'Firebase: Error (auth/missing-email).':
-            message = 'Ingresar email';
-            break;
-          default:
-            break;
-        }
+        loginErrors(user);
       } else {
-        // Accedemos a la vista correspondiente segun el usuario
-        if (workerSelectRefValue === 'Mesas') {
-          navigate('/staff' + location.search);
+        if (selectValue === 'tables') {
+          navigate('/waiters' + location.search);
         } else {
-          navigate('/cooking' + location.search);
+          navigate('/kitchen' + location.search);
         }
       }
-    });
+    },
+    );
   };
+
   return (
     <Box position={'relative'}>
-      <SimpleGrid className="simple-grid"
+      <SimpleGrid
+        className="simple-grid"
         maxW="100vw"
         h="100vh"
         columns={{lg: 2, base: 2, sm: 1}}
@@ -90,8 +67,6 @@ export default function LogIn() {
           pt="8em"
           placeSelf="center"
           spacing={{base: 10, md: 20}}>
-          <Heading>
-          </Heading>
           <Box as={'form'} mt={10} className="input-wrapper">
             <Box>
               <img className="desktop-img"
@@ -103,15 +78,17 @@ export default function LogIn() {
                 <InputLeftElement
                   pointerEvents='none'
                   borderRadius="16px"
-                  children={<EmailIcon color='#F98543' />}
-                  bg={'gray.100'}
+                  children={
+                    <EmailIcon color='#F98543' />
+                  }
+                  bg="gray.100"
                   fontSize="21px"
                 />
                 <Input
-                  ref={userInputRef}
+                  ref={mailInputRef}
                   borderRadius="16px"
-                  variant='filled'
-                  fontFamily={'Lato'}
+                  variant="filled"
+                  fontFamily="Lato"
                   placeholder="Correo electrónico"
                   bg={'gray.100'}
                   border={0}
@@ -127,13 +104,15 @@ export default function LogIn() {
                   pointerEvents="none"
                   borderRadius="16px"
                   bg={'gray.100'}
-                  children={<LockIcon color="#F98543" />}
+                  children={
+                    <LockIcon color="#F98543" />
+                  }
                   fontSize="21px"
                 />
                 <Input
                   ref={passwordInputRef}
                   borderRadius="16px"
-                  variant='filled'
+                  variant="filled"
                   placeholder="Contraseña"
                   fontFamily={'Lato'}
                   bg={'gray.100'}
@@ -146,10 +125,10 @@ export default function LogIn() {
                 />
               </InputGroup>
               <InputGroup borderRadius="16px">
-                <Select ref={workerSelectRef}
-                  placeholder='Selecciona una opción'>
-                  <option value="Mesas">Mesas</option>
-                  <option value="Cocinas">Cocina</option>
+                <Select ref={workAreaRef}
+                  placeholder="Selecciona una opción">
+                  <option value="tables">Mesas</option>
+                  <option value="kitchen">Cocina</option>
                 </Select>
               </InputGroup>
             </Stack>
