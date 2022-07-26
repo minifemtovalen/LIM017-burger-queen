@@ -41,7 +41,7 @@ export default function Login() {
         loginErrors(user);
       } else {
         if (selectValue === 'tables') {
-          navigate('/waiters' + location.search);
+          navigate('/waiter' + location.search);
         } else {
           navigate('/kitchen' + location.search);
         }

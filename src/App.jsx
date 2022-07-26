@@ -9,7 +9,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Login />}/>
-        <Route path="/waiters" element={<WaiterScreen />} />
+        <Route path="/waiter" element={<WaiterScreen />} />
       </Routes>
     </AuthProvider>
   );

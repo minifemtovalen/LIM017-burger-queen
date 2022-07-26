@@ -1,0 +1,68 @@
+{
+    "makisclásicos": [
+      {
+        "id": 1,
+        "item": "Acevichado",
+        "price": 20
+      },
+      {
+        "id": 2,
+        "item": "Vegetariano",
+        "price": 27
+      },
+      {
+        "id": 3,
+        "item": "Tropical",
+        "price": 15
+      },
+      {
+        "id": 4,
+        "item": "Salmon y Avocado",
+        "price": 10
+      }
+    ],
+    "makisespeciales": [
+      {
+        "id": 1,
+        "item": "Pizzero",
+        "price": 22
+      },
+      {
+        "id": 2,
+        "item": "Pulpo al Olivo",
+        "price": 23
+      },
+      {
+        "id": 3,
+        "item": "Parrilero de Salmón",
+        "price": 25
+      },
+      {
+        "id": 4,
+        "item": "California",
+        "price": 20
+      }
+    ],
+    "bebidas": [
+      {
+        "id": 1,
+        "item": "Coca Cola",
+        "price": 4
+      },
+      {
+        "id": 2,
+        "item": "Inca Kola",
+        "price": 5
+      },
+      {
+        "id": 3,
+        "item": "Pepsi Cola",
+        "price": 3
+      },
+      {
+        "id": 4,
+        "item": "San Carlos Sin Gas",
+        "price": 1
+      }
+    ]
+}

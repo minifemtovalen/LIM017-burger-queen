@@ -2,14 +2,27 @@ import {
   Box,
   Grid,
   Button,
-  Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import logo from '../assets/maki-me-happy.svg';
-import {Order} from './Order';
+import { Order } from './Order';
 import './Waiter.css';
-
+import menu from '../menu.json';
+import MenuList from './MenuLista';
 export default function WaiterScreen() {
+  const [data, setMenu] = useState(menu.makisclásicos);
+  const ItemsMakisClasicos = () => {
+    return setMenu(menu.makisclásicos);
+  };
+
+  const ItemsMakisEspeciales = () => {
+    return setMenu(menu.makisespeciales);
+  };
+
+  const ItemsBebidas = () => {
+    return setMenu(menu.bebidas);
+  };
+
   return (
     <Grid
       gridTemplateRows={'4em 1fr'}
@@ -42,19 +55,18 @@ export default function WaiterScreen() {
             gap="1em"
           >
             <Button>all</Button>
-            <Button>category1</Button>
-            <Button>category2</Button>
-            <Button>category3</Button>
+            <Button onClick={ItemsMakisClasicos}>category1</Button>
+            <Button onClick={ItemsMakisEspeciales}>category2</Button>
+            <Button onClick={ItemsBebidas}>category3</Button>
           </Grid>
           <Box bg="teal.200">
-            <Text>Este texto va a
-              ser reemplazado por
-              un componente Item.jsx
-              , el cual se va a
-              llamar varias veces</Text>
+            <MenuList
+              data={data}
+              order={Order}
+            />
           </Box>
         </Grid>
-        <Order/>
+        <Order />
       </Grid>
     </Grid>
   );
